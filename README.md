@@ -9,7 +9,6 @@
 ## 1. Clonar el repositorio
 ```sh
 git clone https://github.com/Yankarloz/Granja-S.A.git
-cd Granja-S.A
 ```
 
 ## 2. Configurar el backend (Spring Boot)
@@ -22,17 +21,17 @@ cd backend
 
 ## 3. Configurar el frontend (React)
 ```sh
-cd ../frontend
+cd frontend
 npm install                 # Descarga todas las dependencias de Node.js
 npm run dev                 # Inicia el servidor de desarrollo de React
 ```
 
 ## 4. Configurar la base de datos
-- Instala PostgreSQL y crea la base de datos con el nombre, usuario y contraseña configurados en `backend/src/main/resources/application.properties`.
+- Instala PostgreSQL y crea la base de datos edita el nombre usario y contraseña en el archivo `application.propertie`.
 - Si es necesario, importa el esquema de tablas.
 
 ## 5. Uso
-- Accede al frontend en la URL que te indique la terminal (por defecto: http://localhost:5173)
+- Accede al frontend en la URL que te indique la terminal
 - El backend estará en http://localhost:8080
 
 ---
