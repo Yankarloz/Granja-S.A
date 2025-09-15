@@ -35,3 +35,31 @@ npm run dev                 # Inicia el servidor de desarrollo de React
 - El backend estará en http://localhost:8080
 
 ---
+
+```mermaid
+classDiagram
+
+class Cliente {
+  +cedula: VARCHAR(20) <<PK>>
+  +nombres: VARCHAR(50)
+  +apellidos: VARCHAR(50)
+  +direccion: VARCHAR(100)
+  +telefono: VARCHAR(20)
+}
+
+class Porcino {
+  +identificacion: VARCHAR(20) <<PK>>
+  +raza: VARCHAR(20)  // 1-york, 2-hamp, 3-duroc
+  +edad: INT
+  +peso: NUMERIC(6,2)
+  +cliente_cedula: VARCHAR(20) <<FK>>
+}
+
+class Alimentacion {
+  +id: SERIAL <<PK>>
+  +descripcion: VARCHAR(100)
+  +dosis: VARCHAR(50)
+}
+
+Cliente "1" --> "0..*" Porcino : tiene
+Porcino "0..*" --> "0..*" Alimentacion : recibe
