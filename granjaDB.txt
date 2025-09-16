@@ -1,0 +1,31 @@
+CREATE TABLE clientes (
+    cedula VARCHAR(20) PRIMARY KEY,
+    nombres VARCHAR(50) NOT NULL,
+    apellidos VARCHAR(50) NOT NULL,
+    direccion VARCHAR(100),
+    telefono VARCHAR(20)
+);
+
+CREATE TABLE alimentacion (
+    id SERIAL PRIMARY KEY,
+    descripcion VARCHAR(100) NOT NULL,
+    dosis VARCHAR(50) NOT NULL
+);
+
+CREATE TABLE porcinos (
+    id SERIAL PRIMARY KEY,
+    identificacion VARCHAR(20) UNIQUE NOT NULL,
+    raza VARCHAR(20) NOT NULL CHECK (raza IN ('york', 'hamp', 'duroc')),
+    edad INT NOT NULL,
+    peso NUMERIC(6,2) NOT NULL,
+    cliente_cedula VARCHAR(20),
+    FOREIGN KEY (cliente_cedula) REFERENCES clientes(cedula)
+);
+
+CREATE TABLE porcino_alimentacion (
+    porcino_id INT,
+    alimentacion_id INT,
+    PRIMARY KEY (porcino_id, alimentacion_id),
+    FOREIGN KEY (porcino_id) REFERENCES porcinos(id) ON DELETE CASCADE,
+    FOREIGN KEY (alimentacion_id) REFERENCES alimentacion(id) ON DELETE CASCADE
+);
