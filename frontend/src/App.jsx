@@ -7,7 +7,7 @@ import PorcinosCRUD from './PorcinosCRUD';
 function App() {
   return (
     <div>
-      <h1>La Granja S.A.</h1>
+      <h1>Granja S.A.</h1>
     <ClientesCRUD />
     <hr />
     <AlimentacionCRUD />
