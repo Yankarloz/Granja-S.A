@@ -1,7 +1,7 @@
 # Granja S.A. - Instrucciones de Instalación y Uso
 
 ## Requisitos previos
-- Java 17 o superior
+- Java 24
 - Node.js y npm
 - PostgreSQL
 - Git
@@ -14,25 +14,24 @@ git clone https://github.com/Yankarloz/Granja-S.A.git
 ## 2. Configurar el backend (Spring Boot)
 ```sh
 cd backend
-./mvnw clean install        # Descarga e instala todas las dependencias de Maven
-./mvnw spring-boot:run      # Inicia el backend
+./mvnw clean install
+./mvnw spring-boot:run
 ```
-> En Windows puedes usar `mvnw.cmd` en vez de `./mvnw`.
 
 ## 3. Configurar el frontend (React)
 ```sh
 cd frontend
-npm install                 # Descarga todas las dependencias de Node.js
-npm run dev                 # Inicia el servidor de desarrollo de React
+npm install                 
+npm run dev                 
 ```
 
 ## 4. Configurar la base de datos
-- Instala PostgreSQL y crea la base de datos edita el nombre usario y contraseña en el archivo `application.propertie`.
-- Si es necesario, importa el esquema de tablas.
+- Instala PostgreSQL y crea la base de datos edita el nombre usario y contraseña en el archivo `backend/src/main/resources/application.properties`.
+- Importa el esquema de tablas usando el granjaDB.txt.
 
 ## 5. Uso
-- Accede al frontend en la URL que te indique la terminal
-- El backend estará en http://localhost:8080
+- Iniciar el backend con ./mvnw spring-boot:run y el front con npm run dev.
+- Abre el frontend con su link.
 
 ---
 
