@@ -1,6 +1,6 @@
 import { useEffect, useState } from "react";
 
-export default function ClientesCRUD() {
+export default function ClientesCRUD({ onDataChange }) {
   const [clientes, setClientes] = useState([]);
   const [form, setForm] = useState({ cedula: "", nombres: "", apellidos: "", direccion: "", telefono: "" });
   const [editCedula, setEditCedula] = useState(null);
@@ -44,6 +44,7 @@ export default function ClientesCRUD() {
         setEditCedula(null);
         setError(null);
         fetchClientes();
+        if (onDataChange) onDataChange();
       })
       .catch(() => setError("Error al guardar cliente"));
   };
@@ -56,7 +57,10 @@ export default function ClientesCRUD() {
   const handleDelete = (cedula) => {
     if (!window.confirm("¿Eliminar cliente?")) return;
     fetch(`http://localhost:8080/clientes/${cedula}`, { method: "DELETE" })
-      .then(fetchClientes)
+      .then(() => {
+        fetchClientes();
+        if (onDataChange) onDataChange();
+      })
       .catch(() => setError("Error al eliminar cliente"));
   };
 
