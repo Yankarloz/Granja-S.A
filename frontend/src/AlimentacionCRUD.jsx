@@ -1,6 +1,6 @@
 import { useEffect, useState } from "react";
 
-export default function AlimentacionCRUD() {
+export default function AlimentacionCRUD({ onDataChange }) {
   const [alimentos, setAlimentos] = useState([]);
   const [form, setForm] = useState({ descripcion: "", dosis: "" });
   const [editId, setEditId] = useState(null);
@@ -40,6 +40,7 @@ export default function AlimentacionCRUD() {
         setEditId(null);
         setError(null);
         fetchAlimentos();
+        if (onDataChange) onDataChange();
       })
       .catch(() => setError("Error al guardar alimento"));
   };
@@ -52,7 +53,10 @@ export default function AlimentacionCRUD() {
   const handleDelete = (id) => {
     if (!window.confirm("¿Eliminar alimento?")) return;
     fetch(`http://localhost:8080/alimentacion/${id}`, { method: "DELETE" })
-      .then(fetchAlimentos)
+      .then(() => {
+        fetchAlimentos();
+        if (onDataChange) onDataChange();
+      })
       .catch(() => setError("Error al eliminar alimento"));
   };
 

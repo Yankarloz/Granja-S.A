@@ -1,6 +1,6 @@
-import { useEffect, useState } from "react";
+import { useEffect, useState, forwardRef, useImperativeHandle } from "react";
 
-export default function PorcinosCRUD() {
+const PorcinosCRUD = forwardRef((props, ref) => {
   const [porcinos, setPorcinos] = useState([]);
   const [clientes, setClientes] = useState([]);
   const [alimentos, setAlimentos] = useState([]);
@@ -10,7 +10,7 @@ export default function PorcinosCRUD() {
     edad: "",
     peso: "",
     clienteCedula: "",
-  alimentacionId: "",
+    alimentacionId: "",
   });
   const [editId, setEditId] = useState(null);
   const [error, setError] = useState(null);
@@ -24,6 +24,11 @@ export default function PorcinosCRUD() {
   useEffect(() => {
     fetchAll();
   }, []);
+
+  // Exponer función recargarListas al padre
+  useImperativeHandle(ref, () => ({
+    recargarListas: fetchAll
+  }));
 
   const handleChange = (e) => {
     const { name, value, type, selectedOptions } = e.target;
@@ -149,4 +154,6 @@ export default function PorcinosCRUD() {
       </table>
     </div>
   );
-}
+});
+
+export default PorcinosCRUD;

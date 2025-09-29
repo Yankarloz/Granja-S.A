@@ -1,8 +1,9 @@
 package com.granja.backend.repository;
 
-import com.granja.backend.entity.Porcino;
 import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.stereotype.Repository;
+
+import com.granja.backend.entity.Porcino;
 
 @Repository
 public interface PorcinoRepository extends JpaRepository<Porcino, Integer> {
