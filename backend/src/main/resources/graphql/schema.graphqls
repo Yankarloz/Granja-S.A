@@ -1,0 +1,92 @@
+type Query {
+    # Consultas para Clientes
+    allClientes: [Cliente!]!
+    clienteById(cedula: String!): Cliente
+    
+    # Consultas para Porcinos
+    allPorcinos: [Porcino!]!
+    porcinoById(id: ID!): Porcino
+    porcinosByCliente(cedula: String!): [Porcino!]!
+    
+    # Consultas para Alimentación
+    allAlimentacion: [Alimentacion!]!
+    alimentacionById(id: ID!): Alimentacion
+    
+    # Reporte
+    reporteClientesPorcinos: [ClientePorcinoDTO!]!
+}
+
+type Mutation {
+    # Mutaciones para Clientes
+    createCliente(input: ClienteInput!): Cliente!
+    updateCliente(cedula: String!, input: ClienteInput!): Cliente!
+    deleteCliente(cedula: String!): Boolean!
+    
+    # Mutaciones para Porcinos
+    createPorcino(input: PorcinoInput!): Porcino!
+    updatePorcino(id: ID!, input: PorcinoInput!): Porcino!
+    deletePorcino(id: ID!): Boolean!
+    
+    # Mutaciones para Alimentación
+    createAlimentacion(input: AlimentacionInput!): Alimentacion!
+    updateAlimentacion(id: ID!, input: AlimentacionInput!): Alimentacion!
+    deleteAlimentacion(id: ID!): Boolean!
+}
+
+type Cliente {
+    cedula: String!
+    nombres: String!
+    apellidos: String!
+    direccion: String
+    telefono: String
+    porcinos: [Porcino!]!
+}
+
+type Porcino {
+    id: ID!
+    identificacion: String!
+    raza: String!
+    edad: Int!
+    peso: Float!
+    cliente: Cliente
+    alimentaciones: [Alimentacion!]!
+}
+
+type Alimentacion {
+    id: ID!
+    descripcion: String!
+    dosis: String!
+    porcinos: [Porcino!]!
+}
+
+type ClientePorcinoDTO {
+    clienteCedula: String!
+    clienteNombres: String!
+    clienteApellidos: String!
+    porcinoIdentificacion: String!
+    raza: String!
+    edad: Int!
+    peso: Float!
+}
+
+input ClienteInput {
+    cedula: String!
+    nombres: String!
+    apellidos: String!
+    direccion: String
+    telefono: String
+}
+
+input PorcinoInput {
+    identificacion: String!
+    raza: String!
+    edad: Int!
+    peso: Float!
+    clienteCedula: String
+    alimentacionIds: [ID!]
+}
+
+input AlimentacionInput {
+    descripcion: String!
+    dosis: String!
+}
