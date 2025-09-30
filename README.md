@@ -1,5 +1,19 @@
 # Granja S.A. - Instrucciones de Instalación y Uso
 
+##Uso GraphQL
+
+-Inicia el servicio de backend 
+```sh
+cd backend
+./mvnw clean install
+./mvnw spring-boot:run
+```
+-En un navegador entra a la herramienta de pruebas de graphql
+
+```sh
+http://localhost:8080/graphiql
+```
+
 ## Requisitos previos
 - Java 24
 - Node.js y npm
